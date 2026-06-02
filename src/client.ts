@@ -1,6 +1,6 @@
 import { createApi } from './api';
 import { API_BASE, COMMON_HEADER } from './const';
-import encrypt from './encrypt';
+import { encryptAccountName, encryptPassword } from './encrypt';
 import type { GF2API, GF2APIResp, ExchangeItem } from './types';
 
 export class GF2BBSClient {
@@ -30,7 +30,8 @@ export class GF2BBSClient {
     private username: string,
     password: string,
   ) {
-    this.password = encrypt(password);
+    this.username = encryptAccountName(username);
+    this.password = encryptPassword(password);
   }
 
   async login() {
