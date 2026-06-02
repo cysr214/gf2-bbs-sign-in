@@ -14,19 +14,22 @@ export class GF2BBSClient {
       Object.entries(data).forEach(([k, v]) => url.searchParams.set(k, v));
     }
     const isPost = method === 'post';
-    const res: GF2APIResp = await fetch(url, {
+    const res: GF2APIResp<any> = await fetch(url, {
       headers: {
         ...(this.token ? { Authorization: this.token } : {}),
         ...(isPost ? { 'Content-Type': 'application/json' } : {}),
         ...COMMON_HEADER,
       },
       ...(isPost ? { method: 'POST', body: JSON.stringify(data || {}) } : {}),
-    }).then(r => r.json());
+    }).then<any>(r => r.json());
     if (res.Code !== 0) throw new Error(res.Message);
     return res.data;
   });
 
-  constructor(private username: string, password: string) {
+  constructor(
+    private username: string,
+    password: string,
+  ) {
     this.password = encrypt(password);
   }
 
