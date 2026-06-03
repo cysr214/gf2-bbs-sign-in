@@ -2,8 +2,8 @@ name: Sign in
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 23 * * *'
+  schedule:
+    - cron: '0 23 * * *'
 
 jobs:
   sign-in:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
       - name: Sign in
         env:
           BBS_USERNAME: ${{ secrets.BBS_USERNAME || vars.BBS_USERNAME }}
