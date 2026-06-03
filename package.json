@@ -3,7 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run src/index.ts",
+    "start": "bun .",
     "build": "bun build --compile --outfile=./dist/gf2-bbs ./src/bin.ts"
   },
   "devDependencies": {
